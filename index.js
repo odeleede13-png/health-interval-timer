@@ -7,6 +7,27 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
+// ===== ROOT ENDPOINT =====
+app.get('/', (req, res) => {
+  res.json({
+    message: '✓ 44-Interval Cloud Timer - Production',
+    status: 'online',
+    endpoints: {
+      health: '/api/health',
+      startDay: 'POST /api/start-day',
+      status: 'GET /api/status',
+      advanceInterval: 'POST /api/advance-interval',
+      pause: 'POST /api/pause',
+      resume: 'POST /api/resume',
+      logMeal: 'POST /api/log-meal',
+      logMedication: 'POST /api/log-medication',
+      logSymptom: 'POST /api/log-symptom',
+      endDay: 'POST /api/end-day'
+    },
+    intervalsLoaded: 44,
+    timestamp: new Date()
+  });
+});
 // Initialize Supabase
 const supabase = createClient(
 process.env.SUPABASE_URL,
